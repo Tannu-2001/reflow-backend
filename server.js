@@ -4,14 +4,34 @@ import cors from "cors";
 import connectDB from "./src/config/db.js"; 
 import projectsRouter from "./src/routes/projects.js";
 import contactRouter from "./src/routes/contact.js";
+import serviceRouter from "./src/routes/service.js";
 import errorHandler from "./src/middleware/errorHandler.js"; 
-import serviceRouter from "./src/routes/service.js"
 
 dotenv.config();
 const app = express();
-app.use(cors({
-  origin: "http://localhost:5173",
-}));
+
+/* ✅ CORS FIX */
+const allowedOrigins = [
+  "http://localhost:5173",
+  "https://reflow-frontend.vercel.app",
+];
+
+app.use(
+  cors({
+    origin: function (origin, callback) {
+      // Postman / server requests (no origin)
+      if (!origin) return callback(null, true);
+
+      if (allowedOrigins.includes(origin)) {
+        callback(null, true);
+      } else {
+        callback(new Error("Not allowed by CORS"));
+      }
+    },
+    credentials: true,
+  })
+);
+
 app.use(express.json());
 
 connectDB();
@@ -22,9 +42,9 @@ app.use("/api/projects", projectsRouter);
 app.use("/api/contact", contactRouter);
 app.use("/api/services", serviceRouter);
 
-if (errorHandler) app.use(errorHandler);
+app.use(errorHandler);
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
-  console.log(`Server running on ${PORT}`);
+  console.log(`Server running on ${PORT}`);
 });
