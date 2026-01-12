@@ -12,10 +12,9 @@ export const getProjects = async (req, res, next) => {
   }
 };
 
-// GET /api/projects/:id  (id ya slug dono chalenge)
 export const getProject = async (req, res, next) => {
   try {
-    // route me path "/:id" hai, isliye yahan id hi lo
+  
     const { id } = req.params;
 
     if (!id) {
@@ -24,11 +23,10 @@ export const getProject = async (req, res, next) => {
 
     let project;
 
-    // agar valid Mongo ObjectId hai to _id se search karo
     if (mongoose.Types.ObjectId.isValid(id)) {
       project = await Project.findById(id);
     } else {
-      // warna slug se try karo
+    
       project = await Project.findOne({ slug: id });
     }
 

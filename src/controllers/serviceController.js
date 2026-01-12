@@ -20,7 +20,6 @@ export const getService = async (req, res, next) => {
       return res.status(400).json({ message: "Service slug is required" });
     }
 
-    // Slug cannot be ObjectId normally, so direct check
     const service = await Service.findOne({ slug: slug })
     .populate("featuredProjects");
 
