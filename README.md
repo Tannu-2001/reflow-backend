@@ -1,4 +1,4 @@
-Reflow Backend is a RESTful API built to power the Reflow portfolio website, handling projects, services, and contact form submissions.
+<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/d544a651-8df0-49eb-8d42-3805023ce573" />Reflow Backend is a RESTful API built to power the Reflow portfolio website, handling projects, services, and contact form submissions.
 
 ## Live API
 https://reflow-backend-1.onrender.com
@@ -45,6 +45,17 @@ Http
 - GET    /api/projects/:id
 - POST   /api/contact
 - GET    /api/services
+
+## Screenshots
+### Get Projects API
+![Project API](./screenshots/reflowprojects.png)
+### Database Contact Collection
+![Database Contact Collection](./screenshots/reflowmongocontact.png)
+### Database Service Collection
+![Database Service Collection](./screenshots/reflowservices.png)
+### Folder Structure
+![Folder Structure](./screenshots/reflowfolder.png)
+
 
 ## Future Improvements
 Admin authentication
